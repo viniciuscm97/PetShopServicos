@@ -2,7 +2,11 @@ const conexao = require('../infraestrutura/conexao')
 
 class Atendimento {
 
-    adiciona(atendimento){
+    adiciona(dados){
+        const dataCriacao = new Date();
+
+        const atendimento = {...dados, dataCriacao};
+        
         const sql = 'INSERT INTO atendimentos set ?';
         
         conexao.query(sql, atendimento, (erro, resultado) => {
