@@ -1,4 +1,0 @@
-sem start no package json: node index.js
-com start: npm start
-
-moment : ajuda na conversao de dados
