@@ -1,14 +1,32 @@
 const Atendimento = require('../models/atendimentos')
 
 module.exports = app => {
+    
     app.get('/atendimentos', (req, res) => {
-        res.send("servidor rodando, na porta GET")
+        Atendimento.lista(res);
     })
+
+    app.get('/atendimentos/:id', (req, res) => {
+        const id = parseInt(req.params.id);
+
+        Atendimento.listaPorId(id,res);
+    })
+
 
     app.post('/atendimentos', (req,res) => {
         const atendimento = req.body;
-        Atendimento.adiciona(atendimento);
+        Atendimento.adiciona(atendimento,res);       
+    })
 
-        res.send(`server rodando em POST`); 
+    app.patch('/atendimentos/:id',(req,res) =>{
+        const id = parseInt(req.params.id);
+
+        const valores = req.body;
+
+        Atendimento.altera(id,valores,res);
+    })
+
+    app.delete('/atendimentos/:id', (req,res) => {
+        Atendimento.deleta(parseInt(req.params.id),res)
     })
 };
