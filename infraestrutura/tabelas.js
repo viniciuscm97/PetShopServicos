@@ -3,6 +3,7 @@ class Tabelas {
         this.conexao = conexao;
 
         this.criarAtendimentos()
+        this.criarServicos()
     }
 
     criarAtendimentos() {
@@ -12,6 +13,18 @@ class Tabelas {
                 console.log(erro)
             }else{
                 console.log('Tabela atendimentos criada com sucesso')
+            }
+        })
+    }
+
+    criarServicos(){
+        const sql = 'create table if not exists servicos (id int not null auto_increment primary key, nome varchar(20), preco float)'
+        
+        this.conexao.query(sql, erro => {
+            if (erro) {
+                console.log(erro)
+            } else {
+                console.log('Tabela servicos criada com sucesso')
             }
         })
     }
